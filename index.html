@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Research | Ayan Orujov</title>
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --muted: #5b5b5b;
+    --rule: #e5e5e5;
+    --paper: #ffffff;
+    --link: #1a4f8a;
+    --link-hover: #0a2c52;
+    --accent: #f5f1ea;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: "Times New Roman", "Georgia", serif;
+    color: var(--ink);
+    background: var(--paper);
+    line-height: 1.55;
+    font-size: 17px;
+  }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { color: var(--link-hover); text-decoration: underline; }
+
+  header.nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--paper);
+    border-bottom: 1px solid var(--rule);
+  }
+  .nav-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 18px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+  .brand {
+    font-family: "Georgia", serif;
+    font-size: 18px;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+  }
+  nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 28px;
+  }
+  nav a {
+    color: var(--ink);
+    font-size: 15px;
+    letter-spacing: 0.02em;
+  }
+  nav a:hover { color: var(--link); text-decoration: none; }
+
+  .hero {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 64px 32px 32px;
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 56px;
+    align-items: start;
+  }
+  .portrait {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    background: var(--accent);
+    border: 1px solid var(--rule);
+    object-fit: cover;
+    display: block;
+  }
+  .portrait-fallback {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    background: var(--accent);
+    border: 1px solid var(--rule);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted);
+    font-size: 13px;
+    text-align: center;
+    padding: 12px;
+  }
+  .hero h1 {
+    font-family: "Georgia", serif;
+    font-weight: 400;
+    font-size: 42px;
+    margin: 0 0 18px;
+    letter-spacing: -0.01em;
+  }
+  .hero p.lede {
+    font-size: 19px;
+    color: var(--ink);
+    margin: 0 0 14px;
+    max-width: 60ch;
+  }
+  .contact-line {
+    color: var(--muted);
+    font-size: 16px;
+    margin: 4px 0;
+  }
+  .cv-link {
+    display: inline-block;
+    margin-top: 14px;
+    padding: 8px 16px;
+    border: 1px solid var(--ink);
+    color: var(--ink);
+    font-size: 15px;
+    letter-spacing: 0.04em;
+  }
+  .cv-link:hover {
+    background: var(--ink);
+    color: var(--paper);
+    text-decoration: none;
+  }
+
+  main {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 32px;
+  }
+  section {
+    padding: 40px 0;
+    border-top: 1px solid var(--rule);
+  }
+  section h2 {
+    font-family: "Georgia", serif;
+    font-weight: 400;
+    font-size: 28px;
+    margin: 0 0 24px;
+    letter-spacing: 0.01em;
+  }
+  section h3 {
+    font-family: "Georgia", serif;
+    font-weight: 400;
+    font-size: 18px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin: 28px 0 14px;
+  }
+
+  .paper {
+    padding: 16px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .paper:last-child { border-bottom: none; }
+  .paper-title {
+    font-size: 18px;
+    color: var(--ink);
+    margin: 0 0 4px;
+  }
+  .paper-meta {
+    color: var(--muted);
+    font-size: 15px;
+    font-style: italic;
+    margin: 0 0 4px;
+  }
+  .paper-authors {
+    color: var(--muted);
+    font-size: 15px;
+    margin: 0;
+  }
+
+  .about p {
+    max-width: 70ch;
+    margin: 0 0 14px;
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 10px 24px;
+    max-width: 520px;
+  }
+  .contact-grid dt {
+    color: var(--muted);
+    font-size: 15px;
+  }
+  .contact-grid dd {
+    margin: 0;
+    font-size: 16px;
+  }
+
+  footer {
+    border-top: 1px solid var(--rule);
+    padding: 28px 32px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 14px;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 760px) {
+    .hero {
+      grid-template-columns: 1fr;
+      gap: 28px;
+      padding: 40px 24px 16px;
+    }
+    .portrait, .portrait-fallback { max-width: 240px; }
+    .nav-inner { padding: 14px 20px; }
+    nav ul { gap: 18px; }
+    .hero h1 { font-size: 34px; }
+    main { padding: 24px; }
+    .contact-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand">Ayan Orujov</div>
+    <nav>
+      <ul>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#cv">CV</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <img class="portrait" src="portrait.jpg" alt="Ayan Orujov"
+       onerror="this.outerHTML='<div class=&quot;portrait-fallback&quot;>Save your photo as <strong>portrait.jpg</strong> in this folder</div>'">
+  <div>
+    <h1>Ayan Orujov</h1>
+    <p class="lede">
+      I am an Assistant Professor of Analytics at the University of Liverpool Management School.
+    </p>
+    <p class="contact-line">You can reach me at: <a href="mailto:ayan.orujov@liverpool.ac.uk">ayan.orujov@liverpool.ac.uk</a></p>
+    <a class="cv-link" href="CV2026AOrujov.docx">CV (2026)</a>
+  </div>
+</section>
+
+<main>
+
+  <section id="research">
+    <h2>Research</h2>
+
+    <h3>Published</h3>
+
+    <article class="paper">
+      <p class="paper-title">
+        <a href="https://doi.org/10.1016/j.socscimed.2026.119060" target="_blank" rel="noopener">Gambling and Wellbeing: Uneven Gains and Deficits Across Risk Levels</a>
+      </p>
+      <p class="paper-meta">Social Science &amp; Medicine, 2026, p. 119060</p>
+      <p class="paper-authors">with D. Forrest, I. McHale and K. Narita</p>
+    </article>
+
+    <article class="paper">
+      <p class="paper-title">
+        <a href="https://www.sciencedirect.com/science/article/pii/S0929119923000664" target="_blank" rel="noopener">Corporate Socio-political Activism and Retail Investors: Evidence from the Black Lives Matter Campaign</a>
+      </p>
+      <p class="paper-meta">Journal of Corporate Finance, 2023, vol. 80, 102417</p>
+      <p class="paper-authors">with R. Brownen-Trinh</p>
+    </article>
+
+    <article class="paper">
+      <p class="paper-title">
+        <a href="https://www.tandfonline.com/doi/full/10.1080/13571516.2022.2133337" target="_blank" rel="noopener">Realizing Gender Diversity on Corporate Boards</a>
+      </p>
+      <p class="paper-meta">International Journal of the Economics of Business, 2022</p>
+      <p class="paper-authors">with W. Kang, J. K. Ashton and Y. Wang</p>
+    </article>
+
+    <article class="paper">
+      <p class="paper-title">
+        <a href="https://www.sciencedirect.com/science/article/abs/pii/S0378426618301031" target="_blank" rel="noopener">Political Donations and Political Risk in the UK: Evidence from a Closely-Fought Election</a>
+      </p>
+      <p class="paper-meta">Journal of Banking &amp; Finance, 2018, vol. 92, pp. 146&ndash;167</p>
+      <p class="paper-authors">with D. Acker and H. Simpson</p>
+    </article>
+
+    <h3>Working papers</h3>
+
+    <article class="paper">
+      <p class="paper-title">
+        <a href="https://papers.ssrn.com/abstract=4428412" target="_blank" rel="noopener">The Word on Main Street: The Value of Social Media Earnings Analyses</a>
+      </p>
+      <p class="paper-authors">with D. Hemmings</p>
+    </article>
+
+    <article class="paper">
+      <p class="paper-title">
+        <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5698862" target="_blank" rel="noopener">Sports Betting Legalisation and Suicide Mortality</a>
+      </p>
+      <p class="paper-authors">with D. Forrest and K. Narita</p>
+    </article>
+
+    <article class="paper">
+      <p class="paper-title">
+        <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5084471" target="_blank" rel="noopener">Gambling Legalization and Mutual Fund Managers' Risk-Taking</a>
+      </p>
+      <p class="paper-authors">with R. Brownen-Trinh and M. Pedio</p>
+    </article>
+
+    <article class="paper">
+      <p class="paper-title">
+        <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4423095" target="_blank" rel="noopener">Trading as Gambling During Lockdown: The Role of the Recent Legalization of Sports Betting in the US</a>
+      </p>
+      <p class="paper-authors">solo authored</p>
+    </article>
+
+    <article class="paper">
+      <p class="paper-title">
+        <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4423168" target="_blank" rel="noopener">Schadenfreude or Support for the Underdog? How Unexpected Sporting Outcomes Influence Retail Investor Behaviour</a>
+      </p>
+      <p class="paper-authors">with L. Jones</p>
+    </article>
+  </section>
+
+  <section id="cv">
+    <h2>Curriculum Vitae</h2>
+    <p>
+      Download a copy of my <a href="CV2026AOrujov.docx">CV (2026)</a>.
+    </p>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <dl class="contact-grid">
+      <dt>Email</dt>
+      <dd><a href="mailto:ayan.orujov@liverpool.ac.uk">ayan.orujov@liverpool.ac.uk</a></dd>
+
+      <dt>Affiliation</dt>
+      <dd>University of Liverpool Management School</dd>
+
+      <dt>Elsewhere</dt>
+      <dd>
+        <a href="https://scholar.google.com/citations?user=pEujtlQAAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a> &middot;
+        <a href="https://www.linkedin.com/in/ayan-orujov-3b403099/" target="_blank" rel="noopener">LinkedIn</a>
+      </dd>
+    </dl>
+  </section>
+
+</main>
+
+<footer>
+  &copy; <span id="year"></span> Ayan Orujov
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
